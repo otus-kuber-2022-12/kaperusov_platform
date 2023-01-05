@@ -1,0 +1,15 @@
+baseURL = "http://example.org/"
+languageCode = "en-us"
+title = "K8s 2022-12"
+theme = 'm10c'
+
+[params]
+    description = "follow me"
+    avatar = "images/mr.dog.jpeg"
+
+[[params.social]]
+    icon = "github"
+    name = "My Github"
+    url = "https://github.com/kaperusov"
+
+
