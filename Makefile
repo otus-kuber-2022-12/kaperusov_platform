@@ -1,13 +1,23 @@
 USER "$(shell id -u):$(shell id -u)"
 
+VERSION = "0.0.2"
+NAME = "kuber-2022-12"
+
 build:
-	docker build -t hw-app:0.0.1 ./web
+	docker build -t kaperusov/$(NAME):$(VERSION) ./web
 
 run: 
-	docker run --name k8s-hw -dp 8000:8000 hw-app:0.0.1
+	docker run --name $(NAME) -dp 8000:8000 kaperusov/$(NAME):$(VERSION)
 
 exec:
-	docker exec -it k8s-hw sh
+	docker exec -it $(NAME) sh
 
 stop:
-	docker stop k8s-hw && docker rm k8s-hw
+	docker stop $(NAME) 
+
+clean:	
+	docker rm $(NAME)
+
+push:
+	# docker login
+	docker push kaperusov/$(NAME):$(VERSION)
