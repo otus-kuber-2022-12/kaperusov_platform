@@ -7,6 +7,26 @@ metadata:
     server: hugo
 spec: 
   containers:
+    # - 
+    #   image: kaperusov/kuber-2022-12:0.0.2
+    #   name: web-app
     - 
-      image: kaperusov/kuber-2022-12:0.0.2
-      name: web-app
+      image: kaperusov/kuber-2022-12:0.0.2-nginx
+      name: nginx
+      volumeMounts:
+      - mountPath: /usr/share/nginx/html
+        name: app
+
+  initContainers:
+    - 
+      name: init-web-app
+      image: busybox:1.31.0
+      command: ['sh', '-c', 'wget -O- https://tinyurl.com/otus-k8s-intro | sh']
+      volumeMounts:
+      - mountPath: /app
+        name: app
+
+  volumes:
+  - name: app
+    emptyDir:
+      sizeLimit: 50Mi
