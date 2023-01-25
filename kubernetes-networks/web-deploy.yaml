@@ -4,6 +4,11 @@ kind: Deployment
 metadata:
   name: web
 spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 100%
+      maxSurge: 100%
   replicas: 3
   selector:
     matchLabels:
