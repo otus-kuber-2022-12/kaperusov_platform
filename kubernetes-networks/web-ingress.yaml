@@ -12,7 +12,7 @@ spec:
       port:
         number: 8000
   rules:
-  - 
+  - host: minikube.web-svc.io
     http:
       paths:
       - 
