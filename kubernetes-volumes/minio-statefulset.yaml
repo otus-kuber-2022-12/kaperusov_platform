@@ -22,14 +22,14 @@ spec:
             secretKeyRef: 
               name: minio-secret
               key: accessKey
-              optional: false
+              optional: true
 
         - name: MINIO_SECRET_KEY
           valueFrom:
             secretKeyRef: 
               name: minio-secret
               key: secretKey
-              optional: false
+              optional: true
 
         image: minio/minio:RELEASE.2019-07-10T00-34-56Z
         args:
