@@ -1,0 +1,33 @@
+---
+# Dave - без доступа к кластеру
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: dave
+
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: role:viewer
+rules:
+  - apiGroups: [""] # core group
+    resources: ["pods"]
+    verbs: ["get", "list"]
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: rolebinding:dave-viewer
+  namespace: default
+
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: role:viewer
+subjects:
+  - kind: ServiceAccount
+    name: dave
+    namespace: default
